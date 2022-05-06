@@ -47,6 +47,7 @@ It provides us bucket domain name
 after hitting the url, our site will be live
 ![image](https://user-images.githubusercontent.com/18758226/167122611-0812b18f-de24-4a5f-85d2-b94ce1dc1045.png)
 
+Site : http://bitan.terraform-tutorials.com.s3-website-us-east-1.amazonaws.com/
 
 
 
