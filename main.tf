@@ -32,3 +32,11 @@ source = "./index.html"
 etag = filemd5("./index.html")
 content_type = "text/html"
 }
+resource “aws_s3_bucket_object” “error” {
+bucket = aws_s3_bucket.mybucket.id
+acl = “public-read” # or can be “public-read”
+key = “error.html”
+source = “./error.html”
+etag = filemd5(“./error.html”)
+content_type = “text/html”
+}
