@@ -15,12 +15,12 @@ variable "instance_type" {
 
 variable "security_group" {
   description = "Name of security group"
-  default     = "my_security_group"
+  default     = "jenkins_security_group"
 }
 
 variable "tag_name" {
   description = "Tag Name of for Ec2 instance"
-  default     = "my-ec2-instance"
+  default     = "sampledemo001"
 }
 
 variable "ami_id" {
