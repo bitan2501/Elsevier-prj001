@@ -2,7 +2,7 @@ provider "aws" {
   region  = "us-east-1"
 }
 
-/*resource "aws_s3_bucket" "mybucket" {
+resource "aws_s3_bucket" "mybucket" {
   bucket = "s3-mybucket250310-webapp002.example.com"
   acl    = "public-read"
   # Add specefic S3 policy in the s3-policy.json on the same directory
@@ -22,11 +22,4 @@ provider "aws" {
     Name        = "my-tag"
   }
 
-}*/
-#Upload files of your static website
-resource "aws_s3_bucket_object" "html" {
- bucket = aws_s3_bucket.mybucket.id
-  acl = "public-read"
-  source = "index.html"
-  content_type = "text/html"
 }
