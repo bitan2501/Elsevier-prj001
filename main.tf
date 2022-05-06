@@ -23,3 +23,13 @@ resource "aws_s3_bucket" "mybucket" {
   }
 
 }
+#Upload files of your static website
+resource "aws_s3_bucket_object" "html" {
+  for_each = fileset("../../mywebsite/", "**/*.html")
+
+  bucket = s3-mybucket250310-webapp002.example.com
+  key    = each.value
+  source = "../../mywebsite/${each.value}"
+  etag   = filemd5("../../mywebsite/${each.value}")
+  content_type = "text/html"
+}
