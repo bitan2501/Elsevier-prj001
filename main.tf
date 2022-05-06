@@ -25,7 +25,8 @@ provider "aws" {
 }*/
 #Upload files of your static website
 resource "aws_s3_bucket_object" "html" {
- bucket = s3-mybucket250310-webapp002.example.com
+ bucket = aws_s3_bucket.mybucket.id
+  acl = "public-read"
   source = "index.html"
   content_type = "text/html"
 }
