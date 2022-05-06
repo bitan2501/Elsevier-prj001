@@ -1,54 +1,26 @@
 provider "aws" {
-  region = var.aws_region
+  profile = "your-machine-user"
+  region  = "us-east-1"
 }
 
-#Create security group with firewall rules
-  resource "aws_security_group" "security_jenkins_grp" {
-  name        = var.security_group
-  description = "security group for jenkins"
+resource "aws_s3_bucket" "mybucket" {
+  bucket = "s3-mybucket-webapp.example.com"
+  acl    = "public-read"
+  # Add specefic S3 policy in the s3-policy.json on the same directory
+  #policy = file("s3-policy.json")
+  policy = templatefile("templates/s3-policy.json", { bucket = "s3-mybucket-webapp.example.com" })
 
-  ingress {
-    from_port   = 8080
-    to_port     = 8080
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+  versioning {
+    enabled = false
   }
 
- ingress {
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+  website {
+    index_document = "index.html"
+    error_document = "error.html"
+  }
+  tags = {
+    Environment = "development"
+    Name        = "my-tag"
   }
 
- # outbound from jenkis server
-  egress {
-    from_port   = 0
-    to_port     = 65535
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  tags= {
-    Name = var.security_group
-  }
-}
-
-resource "aws_instance" "myFirstInstance" {
-  ami           = var.ami_id
-  key_name = var.key_name
-  instance_type = var.instance_type
-  security_groups= [var.security_group]
-  tags= {
-    Name = var.tag_name
-  }
-}
-
-# Create Elastic IP address
-resource "aws_eip" "myElasticIP" {
-  vpc      = true
-  instance = aws_instance.myFirstInstance.id
-tags= {
-    Name = "jenkins_elastic_ip"
-  }
 }
