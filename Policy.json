@@ -4,7 +4,6 @@
     {
     "Sid": "PublicReadGetObject",
     "Effect": "Allow",
-    "Version": "2012–10–17",
     "Principal": "*",
     "Action": [
     "s3:GetObject"
