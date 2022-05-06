@@ -1,5 +1,4 @@
 provider "aws" {
-  profile = "your-machine-user"
   region  = "us-east-1"
 }
 
