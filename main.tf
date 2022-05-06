@@ -5,7 +5,7 @@ provider "aws" {
 resource "aws_s3_bucket" "mybucket" {
   bucket = "bitan.terraform-tutorials.com"
   acl    = "public-read"
-  policy = file("policy.json")
+  policy = file("Policy.json")
   
 
   website {
