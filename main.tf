@@ -2,7 +2,7 @@ provider "aws" {
   region  = "us-east-1"
 }
 
-resource "aws_s3_bucket" "mybucket" {
+/*resource "aws_s3_bucket" "mybucket" {
   bucket = "s3-mybucket250310-webapp002.example.com"
   acl    = "public-read"
   # Add specefic S3 policy in the s3-policy.json on the same directory
@@ -22,7 +22,7 @@ resource "aws_s3_bucket" "mybucket" {
     Name        = "my-tag"
   }
 
-}
+}*/
 #Upload files of your static website
 resource "aws_s3_bucket_object" "html" {
   for_each = fileset("*.html")
