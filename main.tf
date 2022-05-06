@@ -25,11 +25,7 @@ provider "aws" {
 }*/
 #Upload files of your static website
 resource "aws_s3_bucket_object" "html" {
-  for_each = fileset("*.html")
-
-  bucket = s3-mybucket250310-webapp002.example.com
-  key    = each.value
-  source = "../../mywebsite/${each.value}"
-  etag   = filemd5("../../mywebsite/${each.value}")
+ bucket = s3-mybucket250310-webapp002.example.com
+  source = "index.html"
   content_type = "text/html"
 }
