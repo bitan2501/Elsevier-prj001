@@ -5,13 +5,8 @@ provider "aws" {
 resource "aws_s3_bucket" "mybucket" {
   bucket = "bitan.terraform-tutorials.com"
   acl    = "public-read"
-  # Add specefic S3 policy in the s3-policy.json on the same directory
-  #policy = file("s3-policy.json")
-  #policy = templatefile("templates/s3-policy.json", { bucket = "s3-mybucket-webapp.example.com" })
-
-  versioning {
-    enabled = false
-  }
+  policy = file(“policy.json”)
+  
 
   website {
     index_document = "index.html"
